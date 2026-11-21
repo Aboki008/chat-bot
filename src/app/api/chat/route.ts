@@ -82,7 +82,7 @@ Your role is to guide prospective students, current candidates, parents, and vis
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { messages, apiKey: userProvidedKey, model = "qwen/qwen3.8-27b" } = body;
+    const { messages, apiKey: userProvidedKey, model = "openai/gpt-oss-120b" } = body;
 
     const apiKey =
       userProvidedKey?.trim() ||
@@ -121,7 +121,7 @@ export async function POST(req: NextRequest) {
 
     // Create Groq chat completion stream
     const completionStream = await groq.chat.completions.create({
-      model: model || "qwen/qwen3.8-27b",
+      model: model || "openai/gpt-oss-120b",
       messages: groqMessages,
       temperature: 0.4,
       max_tokens: 1800,
